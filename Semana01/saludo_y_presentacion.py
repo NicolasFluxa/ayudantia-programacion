@@ -26,7 +26,7 @@ print("Mi nombre es:", nombre_completo)
 asignatura = "Ayudantía de Programación"
 seccion = "Tu Sección Aquí (ej: Sección 1)"
 print("Asignatura:", asignatura)
-print("Sección:", seccion)
+print("Sección:", algo)
 
 # Un mensaje final opcional
 print("------------------------------------")
