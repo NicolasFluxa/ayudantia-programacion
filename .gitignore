@@ -1,0 +1,46 @@
+# ---------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------
+# Archivos compilados (Python los genera solo al ejecutar el código)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Entornos virtuales
+.venv/
+venv/
+env/
+ENV/
+
+# Variables de entorno y credenciales: nunca se suben al repositorio
+.env
+.env.*
+
+# Caché de herramientas
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.ipynb_checkpoints/
+
+# Cobertura de pruebas
+.coverage
+htmlcov/
+
+# ---------------------------------------------------------------
+# Editores e IDE (configuración personal de cada usuario)
+# ---------------------------------------------------------------
+# JetBrains (PyCharm)
+.idea/
+*.iml
+*.iws
+
+# Visual Studio Code
+.vscode/
+
+# ---------------------------------------------------------------
+# Sistema operativo
+# ---------------------------------------------------------------
+.DS_Store
+Thumbs.db
+desktop.ini
