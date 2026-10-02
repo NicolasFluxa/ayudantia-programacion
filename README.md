@@ -1,57 +1,68 @@
-# Ayudantía de Programación en Python 🐍
+# Ayudantía de Programación en Python
 
-¡Bienvenido/a al repositorio oficial de la Ayudantía de Programación! Este espacio ha sido creado para complementar tu aprendizaje en el lenguaje Python, ofreciéndote material de apoyo, ejercicios prácticos y ejemplos que te ayudarán a consolidar los conocimientos adquiridos en clase.
+Material de apoyo de la ayudantía del ramo **Programación en Python**, Universidad Autónoma de Chile (sede Talca). Ayudantías 2023 a 2026.
 
-Este material es preparado y gestionado por Nicolás Fluxá Morán, Ayudante del curso.
+Son ejercicios cortos, con solución comentada y preguntas de comprensión, ordenados por semana: desde `print()` y variables hasta funciones y un proyecto integrador. Sirven para practicar después de clases y para repasar antes de una evaluación.
 
-## Sobre el Ayudante
+## Contenido
 
-Soy Nicolás, estudiante de Ingeniería Civil Informática, con un gran entusiasmo por el desarrollo de software y la programación científica. Mi objetivo como ayudante es facilitar tu camino en el aprendizaje de Python, mostrando cómo este lenguaje puede ser una herramienta poderosa y versátil para resolver problemas cotidianos y desafíos más complejos.
-Puedes conocer más sobre mi trayectoria profesional en mi perfil de [LinkedIn](https://www.linkedin.com/in/nflux%C3%A1/).
-## Estructura del Repositorio 📂
+| Carpeta | Tema | Qué encontrarás |
+|---|---|---|
+| `Semana01` | Primeros pasos | `print`, comentarios, variables y tipos de datos. Opcional: conversión de Celsius a Fahrenheit |
+| `Semana02` | Entrada de datos y lógica | `input`, operaciones aritméticas, comparaciones y operadores lógicos. Opcional: validador de condiciones |
+| `Semana03` | Condicionales | `if` / `elif` / `else`: mayoría de edad y clasificación de un número. Opcional: calculadora de descuentos |
+| `Semana04` | Ciclo `while` | Contador y menú interactivo. Opcional: adivina el número |
+| `Semana05` | Ciclo `for` y `range()` | Conteos y recorrido de un texto. Opcional: tabla de multiplicar |
+| `Semana06` | Listas (1) | Crear, acceder y modificar listas. Opcional: lista de compras dinámica |
+| `Semana07` | Listas (2) | Recorrer, ordenar, buscar y contar. Opcional: análisis de números (suma, máximo, mínimo, promedio) |
+| `Semana08` | Funciones (1) | Definir funciones, parámetros y docstrings. Opcional: función que retorna el análisis de una lista |
+| `Semana09` | Funciones (2) | Alcance de variables, argumentos por defecto y por palabra clave. Opcional: `*args` y `**kwargs` |
+| `Semana10` | Proyecto integrador | Gestor de tareas por consola y su extensión con búsqueda. Opcional: verificador de fortaleza de contraseña |
+| `Triangulos` | Extra | Figuras con `for`: escaleras, pirámides y diamante |
 
-Este repositorio está organizado en carpetas semanales, desde la `semana-01` hasta la `semana-10`, siguiendo el progreso del curso. Dentro de cada carpeta semanal, encontrarás:
+Dentro de cada semana, los ejercicios principales están directamente en la carpeta y los más desafiantes, en `Opcional/`.
 
-* **`Ayudantia/`**: Contiene los ejercicios principales que se revisarán y desarrollarán durante las sesiones de ayudantía.
-* **`Opcional/`**: Incluye ejercicios adicionales o un poco más desafiantes para que puedas practicar y profundizar por tu cuenta.
+## Cómo están escritos los ejercicios
 
-Cada archivo de ejercicio (`.py`) está estructurado de la siguiente manera para facilitar tu aprendizaje:
-1.  **ENUNCIADO**: Una descripción clara del problema a resolver.
-2.  **CÓDIGO**: La solución propuesta en Python, comentada para explicar los pasos importantes.
-3.  **PREGUNTAS DE COMPRENSIÓN**: Preguntas diseñadas para reflexionar sobre el código y los conceptos aplicados.
+Cada archivo `.py` trae, en este orden:
 
-## ¿Cómo Usar Este Repositorio? 🚀
+1. **Enunciado**: qué debes resolver (al inicio del archivo).
+2. **Solución comentada**: una solución propuesta en Python.
+3. **Preguntas de comprensión**: para reflexionar sobre el código (al final del archivo).
 
-1.  **Clona o Descarga**: Puedes clonar este repositorio usando `git clone https://github.com/NicolasFluxa/Ayudantia-Programaci-n.git` o descargarlo como un archivo ZIP.
-2.  **Navega**: Explora las carpetas semanales según el avance del curso.
-3.  **Práctica**:
-    * Intenta resolver los enunciados por tu cuenta antes de revisar la solución propuesta.
-    * Ejecuta los archivos `.py` en tu entorno de Python para verlos en acción.
-    * Modifica el código y experimenta con él para entender mejor su funcionamiento.
-    * ¡No olvides responder las "Preguntas de Comprensión"! Son una excelente forma de autoevaluarte.
-4.  **Consulta**: Utiliza este material como apoyo para tus estudios y para prepararte para las evaluaciones.
+Los archivos de `Triangulos` son solo código.
 
-## Contenido del Curso (Programación Introductoria) 📚
+## Cómo ejecutar los ejemplos
 
-A lo largo de estas 10 semanas, cubriremos los fundamentos esenciales de la programación en Python, incluyendo:
+Necesitas **Python 3.8 o superior** ([descargar](https://www.python.org/downloads/)). Los ejemplos no usan librerías externas: no hay nada más que instalar.
 
-* **Semana 1-2**: Introducción a Python, variables, tipos de datos, operadores, entrada/salida básica.
-* **Semana 3**: Estructuras condicionales (`if`, `elif`, `else`).
-* **Semana 4**: Bucles `while`.
-* **Semana 5**: Bucles `for` y la función `range()`.
-* **Semana 6-7**: Introducción a estructuras de datos: Listas (creación, acceso, métodos básicos y avanzados).
-* **Semana 8-9**: Funciones (definición, parámetros, retorno, alcance, argumentos por defecto y por palabra clave).
-* **Semana 10**: Proyecto integrador aplicando los conceptos aprendidos.
-* **Triangulos**: Un regalito extra.
+1. Descarga el repositorio con el botón verde **Code** > **Download ZIP**, o clónalo con `git clone` usando la URL de ese mismo botón.
+2. Abre una terminal en la carpeta del repositorio.
+3. Ejecuta el archivo que quieras. Por ejemplo:
 
-## Prerrequisitos 🛠️
+```
+python Semana01/variables_y_tipos_de_datos.py
+```
 
-* Tener Python 3.x instalado en tu sistema.
-* Un editor de código o IDE de tu preferencia (VS Code, PyCharm Community, Sublime Text, etc.).
-* ¡Muchas ganas de aprender y practicar!
+En Windows también puedes escribir `py` en lugar de `python`. Si el nombre del archivo tiene espacios (como en `Triangulos`), ponlo entre comillas:
 
-## ¿Necesitas Ayuda? 💬
+```
+python "Triangulos/5. Pirámide.py"
+```
 
-Este repositorio es un complemento. La instancia principal para resolver dudas es durante las **sesiones de ayudantía**. ¡Prepara tus preguntas y participa activamente!
+También puedes abrir los archivos en VS Code, PyCharm, Thonny o el editor que prefieras y ejecutarlos desde ahí.
+
+## Cómo sacarle provecho
+
+- Intenta resolver cada enunciado por tu cuenta antes de mirar la solución.
+- Ejecuta el código, modifícalo y observa qué cambia.
+- Responde las preguntas de comprensión del final: son una buena forma de autoevaluarte.
+
+## Dudas
+
+Este repositorio complementa las clases. La instancia principal para resolver dudas son las sesiones de ayudantía: llega con tus preguntas preparadas.
 
 ---
+
+Material preparado por Nicolás Fluxá, ayudante de Programación en Python.
+[Perfil en LinkedIn](https://www.linkedin.com/in/nflux%C3%A1/)
