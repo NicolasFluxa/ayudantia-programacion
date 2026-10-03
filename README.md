@@ -2,7 +2,7 @@
 
 Material de apoyo de la ayudantía del ramo **Programación en Python**, Universidad Autónoma de Chile (sede Talca). Ayudantías 2023 a 2026.
 
-Son ejercicios cortos, con solución comentada y preguntas de comprensión, ordenados por semana: desde `print()` y variables hasta funciones y un proyecto integrador. Sirven para practicar después de clases y para repasar antes de una evaluación.
+Son ejercicios cortos, con solución comentada, preguntas de comprensión y **otras formas de hacerlo**, ordenados por semana: desde `print()` y variables hasta funciones y un proyecto integrador. Sirven para practicar después de clases y para repasar antes de una evaluación.
 
 ## Contenido
 
@@ -15,9 +15,9 @@ Son ejercicios cortos, con solución comentada y preguntas de comprensión, orde
 | `Semana05` | Ciclo `for` y `range()` | Conteos y recorrido de un texto. Opcional: tabla de multiplicar |
 | `Semana06` | Listas (1) | Crear, acceder y modificar listas. Opcional: lista de compras dinámica |
 | `Semana07` | Listas (2) | Recorrer, ordenar, buscar y contar. Opcional: análisis de números (suma, máximo, mínimo, promedio) |
-| `Semana08` | Funciones (1) | Definir funciones, parámetros y docstrings. Opcional: función que retorna el análisis de una lista |
+| `Semana08` | Funciones (1) | Definir funciones, parámetros, docstrings y `return`. Opcional: función que retorna el análisis de una lista |
 | `Semana09` | Funciones (2) | Alcance de variables, argumentos por defecto y por palabra clave. Opcional: `*args` y `**kwargs` |
-| `Semana10` | Proyecto integrador | Gestor de tareas por consola y su extensión con búsqueda. Opcional: verificador de fortaleza de contraseña |
+| `Semana10` | Proyecto integrador | Gestor de tareas por consola y su extensión con búsqueda (este último archivo ya incluye todo y se ejecuta solo). Opcional: verificador de fortaleza de contraseña |
 | `Triangulos` | Extra | Figuras con `for`: escaleras, pirámides y diamante |
 
 Dentro de cada semana, los ejercicios principales están directamente en la carpeta y los más desafiantes, en `Opcional/`.
@@ -26,11 +26,12 @@ Dentro de cada semana, los ejercicios principales están directamente en la carp
 
 Cada archivo `.py` trae, en este orden:
 
-1. **Enunciado**: qué debes resolver (al inicio del archivo).
+1. **Enunciado**: qué debes resolver, con el objetivo, la entrada y un ejemplo de la salida esperada (al inicio del archivo).
 2. **Solución comentada**: una solución propuesta en Python.
-3. **Preguntas de comprensión**: para reflexionar sobre el código (al final del archivo).
+3. **Preguntas de comprensión**: para reflexionar sobre el código.
+4. **Otras formas de hacerlo**: de 1 a 3 maneras distintas de obtener el mismo resultado (por ejemplo, `for` frente a `while`, f-string frente a concatenación, `in` frente a un bucle de búsqueda), cada una con una línea que dice cuándo conviene. Vienen dentro de funciones `alternativa_1()`, `alternativa_2()`, etc. que **no se ejecutan solas**: para probarlas, quita el `#` de la llamada que aparece al final del archivo.
 
-Los archivos de `Triangulos` son solo código.
+Los archivos de `Triangulos` tienen la misma estructura, sin preguntas de comprensión.
 
 ## Cómo ejecutar los ejemplos
 
@@ -56,7 +57,8 @@ También puedes abrir los archivos en VS Code, PyCharm, Thonny o el editor que p
 
 - Intenta resolver cada enunciado por tu cuenta antes de mirar la solución.
 - Ejecuta el código, modifícalo y observa qué cambia.
-- Responde las preguntas de comprensión del final: son una buena forma de autoevaluarte.
+- Responde las preguntas de comprensión: son una buena forma de autoevaluarte.
+- Revisa las "Otras formas de hacerlo" y compáralas con tu solución: no hay una única respuesta correcta, pero sí versiones más claras o más cortas según el caso.
 
 ## Dudas
 
