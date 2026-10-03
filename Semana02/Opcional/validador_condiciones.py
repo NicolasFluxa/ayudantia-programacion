@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                        EJERCICIO OPCIONAL 01
-                  Pequeño Validador de Condiciones
+                             EJERCICIO OPCIONAL 01
+                        Pequeño Validador de Condiciones
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -22,6 +22,31 @@ e. Evaluar una condición adicional: si la persona tiene un "pase VIP" O (`or`)
 f. Imprimir la altura, edad y si tiene pase VIP.
 g. Imprimir si cumple los requisitos básicos.
 h. Imprimir si finalmente puede subir a la atracción.
+
+## OBJETIVO:
+## ---------
+Combinar condiciones con `and` y `or` y guardar el resultado en variables booleanas.
+
+## ENTRADA:
+## --------
+Tres líneas: altura en metros (decimal), edad en años (entero) y "si" o "no".
+
+## SALIDA ESPERADA (ejemplo de ejecución, con 1.65, 14 y no):
+## ----------------------------------------------------------
+--- Validador para Montaña Rusa Extrema ---
+Ingresa tu altura en metros (ej: 1.65): 1.65
+Ingresa tu edad en años (ej: 14): 14
+¿Tienes un pase VIP? (responde 'si' o 'no'): no
+
+--- Datos Ingresados ---
+Altura: 1.65 metros
+Edad: 14 años
+¿Tiene Pase VIP?: No
+
+--- Resultados de Validación ---
+¿Cumple requisitos básicos (altura > 1.50m Y edad >= 12 años)?: True
+¿Puede subir a la Montaña Rusa Extrema?: True
+-----------------------------------
 -------------------------------------------------------------------------------
 """
 
@@ -37,7 +62,8 @@ edad_anios = int(edad_str)
 
 # c. Preguntar si tiene pase VIP
 tiene_pase_vip_str = input("¿Tienes un pase VIP? (responde 'si' o 'no'): ")
-# Convertimos la respuesta a minúsculas para facilitar la comparación
+# Convertimos la respuesta a minúsculas para que "SI", "Si" y "si" valgan igual.
+# El resultado de `==` es un booleano (True/False) y es lo que se guarda.
 tiene_pase_vip = tiene_pase_vip_str.lower() == "si"
 
 print("\n--- Datos Ingresados ---")
@@ -79,3 +105,80 @@ print("-----------------------------------")
    asignar "Sí" o "No" a una variable antes de imprimirla?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # Acepta "si" y también "sí" (con tilde) usando `in` sobre una tupla de respuestas
+    # válidas, y calcula todo con menos variables.
+    # `x in (a, b)` es True si x es igual a alguno de los valores de la tupla.
+    # Conviene: cuando hay varias respuestas posibles para decir "sí".
+    print("--- Validador para Montaña Rusa Extrema ---")
+    altura_metros = float(input("Ingresa tu altura en metros (ej: 1.65): "))
+    edad_anios = int(input("Ingresa tu edad en años (ej: 14): "))
+    respuesta = input("¿Tienes un pase VIP? (responde 'si' o 'no'): ")
+    tiene_pase_vip = respuesta.strip().lower() in ("si", "sí")
+
+    print("\n--- Datos Ingresados ---")
+    print(f"Altura: {altura_metros:.2f} metros")
+    print(f"Edad: {edad_anios} años")
+    print(f"¿Tiene Pase VIP?: {'Sí' if tiene_pase_vip else 'No'}")
+
+    cumple_requisitos_basicos = altura_metros > 1.50 and edad_anios >= 12
+    puede_subir_final = tiene_pase_vip or cumple_requisitos_basicos
+
+    print("\n--- Resultados de Validación ---")
+    print(f"¿Cumple requisitos básicos (altura > 1.50m Y edad >= 12 años)?: {cumple_requisitos_basicos}")
+    print(f"¿Puede subir a la Montaña Rusa Extrema?: {puede_subir_final}")
+    print("-----------------------------------")
+
+
+def alternativa_2():
+    # Mismo resultado con if/else tradicional, sin `and` ni `or`, y el "if en línea"
+    # reemplazado por un if-else normal (pregunta 4 de comprensión).
+    # Conviene: cuando recién aprendes y quieres ver paso a paso cada decisión.
+    print("--- Validador para Montaña Rusa Extrema ---")
+    altura_metros = float(input("Ingresa tu altura en metros (ej: 1.65): "))
+    edad_anios = int(input("Ingresa tu edad en años (ej: 14): "))
+    respuesta = input("¿Tienes un pase VIP? (responde 'si' o 'no'): ")
+    tiene_pase_vip = respuesta.lower() == "si"
+
+    print("\n--- Datos Ingresados ---")
+    print(f"Altura: {altura_metros:.2f} metros")
+    print(f"Edad: {edad_anios} años")
+    if tiene_pase_vip:
+        texto_vip = "Sí"
+    else:
+        texto_vip = "No"
+    print(f"¿Tiene Pase VIP?: {texto_vip}")
+
+    if altura_metros > 1.50:
+        if edad_anios >= 12:
+            cumple_requisitos_basicos = True
+        else:
+            cumple_requisitos_basicos = False
+    else:
+        cumple_requisitos_basicos = False
+
+    if tiene_pase_vip:
+        puede_subir_final = True
+    else:
+        puede_subir_final = cumple_requisitos_basicos
+
+    print("\n--- Resultados de Validación ---")
+    print(f"¿Cumple requisitos básicos (altura > 1.50m Y edad >= 12 años)?: {cumple_requisitos_basicos}")
+    print(f"¿Puede subir a la Montaña Rusa Extrema?: {puede_subir_final}")
+    print("-----------------------------------")
+
+
+# alternativa_1()
+# alternativa_2()
