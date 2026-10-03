@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                        EJERCICIO OPCIONAL 01
-                       Adivina el Número con `while`
+                             EJERCICIO OPCIONAL 01
+                         Adivina el Número con `while`
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -21,16 +21,40 @@ El programa debe:
 5. Cuando el usuario adivine, imprimir un mensaje de felicitaciones
    y terminar el bucle.
 (Opcional Avanzado): Contar cuántos intentos le tomó al usuario adivinar.
+
+## OBJETIVO:
+## ---------
+Combinar `while` y `if-elif-else`: repetir hasta cumplir una condición y dar pistas.
+
+## ENTRADA:
+## --------
+Un número entero por intento (se repite hasta acertar). El secreto es 42.
+
+## SALIDA ESPERADA (ejemplo de ejecución, intentando 50, 20 y 42):
+## ---------------------------------------------------------------
+¡Bienvenido al juego 'Adivina el Número'!
+He pensado un número entre 1 y 100. ¡Intenta adivinarlo!
+----------------------------------------------------
+Ingresa tu intento: 50
+Tu intento es muy alto. ¡Sigue intentando!
+Ingresa tu intento: 20
+Tu intento es muy bajo. ¡Sigue intentando!
+Ingresa tu intento: 42
+
+¡Felicidades! 🎉 ¡Has adivinado el número secreto: 42!
+Te tomó 3 intento(s).
+----------------------------------------------------
+¡Gracias por jugar!
 -------------------------------------------------------------------------------
 """
 
 # 1. Definir el número secreto
 numero_secreto = 42
-# (Para hacerlo más interesante, podrías usar la biblioteca `random` para generar
-# un número aleatorio, pero por ahora lo dejaremos fijo)
+# (Para hacerlo más interesante, podrías usar el módulo `random` para generar un
+# número aleatorio, pero por ahora lo dejaremos fijo. Ver la alternativa_2 de abajo.)
 
 # 2. Inicializar variables
-intento_usuario = 0 # Un valor inicial que no sea el número secreto
+intento_usuario = 0 # Valor inicial distinto del secreto, para que el while entre la primera vez
 intentos_realizados = 0 # Opcional: contador de intentos
 
 print("¡Bienvenido al juego 'Adivina el Número'!")
@@ -71,3 +95,68 @@ print("¡Gracias por jugar!")
    `intentos_realizados`?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # `while True` + `break`: no hace falta inicializar `intento_usuario` con un valor
+    # "falso", porque la condición de salida se revisa dentro del bucle.
+    # Conviene: cuando el primer paso (pedir el dato) ya es parte del bucle.
+    numero_secreto = 42
+    intentos_realizados = 0
+    print("¡Bienvenido al juego 'Adivina el Número'!")
+    print("He pensado un número entre 1 y 100. ¡Intenta adivinarlo!")
+    print("----------------------------------------------------")
+    while True:
+        intento_usuario = int(input("Ingresa tu intento: "))
+        intentos_realizados += 1
+        if intento_usuario < numero_secreto:
+            print("Tu intento es muy bajo. ¡Sigue intentando!")
+        elif intento_usuario > numero_secreto:
+            print("Tu intento es muy alto. ¡Sigue intentando!")
+        else:
+            print(f"\n¡Felicidades! 🎉 ¡Has adivinado el número secreto: {numero_secreto}!")
+            print(f"Te tomó {intentos_realizados} intento(s).")
+            break
+    print("----------------------------------------------------")
+    print("¡Gracias por jugar!")
+
+
+def alternativa_2():
+    # Número secreto aleatorio con el módulo `random` (novedad).
+    # `import random` trae herramientas de azar; random.randint(1, 100) entrega un
+    # entero entre 1 y 100, ambos incluidos. El juego es igual, pero cambia cada vez.
+    # Conviene: para que el juego se pueda jugar más de una vez. No se compara con la
+    # salida del programa original porque el secreto ya no es 42.
+    import random
+    numero_secreto = random.randint(1, 100)
+    intento_usuario = 0
+    intentos_realizados = 0
+    print("¡Bienvenido al juego 'Adivina el Número'!")
+    print("He pensado un número entre 1 y 100. ¡Intenta adivinarlo!")
+    print("----------------------------------------------------")
+    while intento_usuario != numero_secreto:
+        intento_usuario = int(input("Ingresa tu intento: "))
+        intentos_realizados += 1
+        if intento_usuario < numero_secreto:
+            print("Tu intento es muy bajo. ¡Sigue intentando!")
+        elif intento_usuario > numero_secreto:
+            print("Tu intento es muy alto. ¡Sigue intentando!")
+        else:
+            print(f"\n¡Felicidades! 🎉 ¡Has adivinado el número secreto: {numero_secreto}!")
+            print(f"Te tomó {intentos_realizados} intento(s).")
+    print("----------------------------------------------------")
+    print("¡Gracias por jugar!")
+
+
+# alternativa_1()
+# alternativa_2()   # esta no se puede probar con entradas fijas: el secreto es al azar

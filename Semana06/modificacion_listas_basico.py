@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                              EJERCICIO 02
-                    Modificación Básica de Listas
+                                  EJERCICIO 02
+                         Modificación Básica de Listas
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -22,6 +22,25 @@ básicos y asignación por índice.
     la tarea eliminada y la lista resultante.
 7.  Supongamos que quieres eliminar "Lavar la loza" (o la primera tarea que
     pusiste) por su valor. Usa el método `remove()`. Imprime la lista.
+
+## OBJETIVO:
+## ---------
+Modificar una lista: cambiar un elemento por su índice, agregar con
+`append()` e `insert()`, y quitar con `pop()` y `remove()`.
+
+## ENTRADA:
+## --------
+Ninguna: todo está escrito en el código.
+
+## SALIDA ESPERADA (la lista cambia paso a paso):
+## ----------------------------------------------
+Lista de tareas inicial: ['Lavar la loza', 'Estudiar Python', 'Hacer ejercicio']
+Tarea modificada: ['Lavar la loza', 'Estudiar Python (Completado)', 'Hacer ejercicio']
+Después de append('Comprar pan'): [..., 'Hacer ejercicio', 'Comprar pan']
+Después de insert(0, 'Pasear al perro'): ['Pasear al perro', 'Lavar la loza', ...]
+Tarea eliminada con pop(): 'Comprar pan'
+Después de remove('Lavar la loza'):
+    ['Pasear al perro', 'Estudiar Python (Completado)', 'Hacer ejercicio']
 -------------------------------------------------------------------------------
 """
 
@@ -82,3 +101,95 @@ print("Lista de tareas final:", tareas_pendientes)
     `mi_lista.remove(20)`, ¿cómo quedaría `mi_lista`? ¿Por qué?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # Mismos cambios sin usar los métodos: con `+` (unir listas) y con `del`.
+    #   lista + [x]    -> crea una lista nueva con x al final (como append).
+    #   [x] + lista    -> crea una lista nueva con x al inicio (como insert(0, x)).
+    #   del lista[-1]  -> borra el último elemento (como pop(), pero NO lo devuelve,
+    #                     por eso lo guardamos antes).
+    # Conviene: para entender que un método es una forma cómoda de hacer algo que
+    # también puedes lograr con operadores. En la práctica, append/insert/pop son
+    # mejores: modifican la lista en el lugar y no crean copias.
+    tareas_pendientes = ["Lavar la loza", "Estudiar Python", "Hacer ejercicio"]
+    print("Lista de tareas inicial:", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes[1] = "Estudiar Python (Completado)"
+    print("Tarea modificada:", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes = tareas_pendientes + ["Comprar pan"]
+    print("Después de append('Comprar pan'):", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes = ["Pasear al perro"] + tareas_pendientes
+    print("Después de insert(0, 'Pasear al perro'):", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tarea_eliminada_pop = tareas_pendientes[-1]
+    del tareas_pendientes[-1]
+    print(f"Tarea eliminada con pop(): '{tarea_eliminada_pop}'")
+    print("Lista después de pop():", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tarea_a_remover = "Lavar la loza"
+    if tarea_a_remover in tareas_pendientes:
+        del tareas_pendientes[tareas_pendientes.index(tarea_a_remover)]
+        print(f"Después de remove('{tarea_a_remover}'):", tareas_pendientes)
+    else:
+        print(f"La tarea '{tarea_a_remover}' no se encontró en la lista.")
+    print("-----------------------------------------")
+    print("Lista de tareas final:", tareas_pendientes)
+
+
+def alternativa_2():
+    # Proteger remove() con try / except en vez de preguntar antes con `in`.
+    #   try:    intenta hacer algo que podría fallar.
+    #   except: si falla con ese error, ejecuta esto en lugar de detener el programa.
+    # Conviene: cuando es más natural "intentar y, si no resulta, avisar". La versión
+    # con `in` (la principal) es más fácil de leer cuando recién aprendes.
+    tareas_pendientes = ["Lavar la loza", "Estudiar Python", "Hacer ejercicio"]
+    print("Lista de tareas inicial:", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes[1] = "Estudiar Python (Completado)"
+    print("Tarea modificada:", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes.append("Comprar pan")
+    print("Después de append('Comprar pan'):", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tareas_pendientes.insert(0, "Pasear al perro")
+    print("Después de insert(0, 'Pasear al perro'):", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tarea_eliminada_pop = tareas_pendientes.pop()
+    print(f"Tarea eliminada con pop(): '{tarea_eliminada_pop}'")
+    print("Lista después de pop():", tareas_pendientes)
+    print("-----------------------------------------")
+
+    tarea_a_remover = "Lavar la loza"
+    try:
+        tareas_pendientes.remove(tarea_a_remover)
+        print(f"Después de remove('{tarea_a_remover}'):", tareas_pendientes)
+    except ValueError:
+        print(f"La tarea '{tarea_a_remover}' no se encontró en la lista.")
+    print("-----------------------------------------")
+    print("Lista de tareas final:", tareas_pendientes)
+
+
+# alternativa_1()
+# alternativa_2()

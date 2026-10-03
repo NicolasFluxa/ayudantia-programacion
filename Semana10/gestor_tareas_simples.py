@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                              PROYECTO 01
-                         Gestor de Tareas Simple
+                                  PROYECTO 01
+                            Gestor de Tareas Simple
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -16,6 +16,38 @@ tareas pendientes. La aplicación deberá permitir al usuario:
 Deberás estructurar tu código utilizando funciones para cada una de las
 funcionalidades principales. Las tareas se almacenarán en una lista, donde
 cada tarea podría ser un diccionario con su descripción y estado (completada/pendiente).
+
+## OBJETIVO:
+## ---------
+Integrar lo aprendido en el curso: menú con `while`, listas, diccionarios,
+funciones, `if/elif/else`, validación con `try/except` y recorrido con `for`.
+
+## ENTRADA:
+## --------
+Opciones del menú (1 a 5), la descripción de una tarea nueva y el número de la
+tarea a marcar o eliminar.
+
+## SALIDA ESPERADA (ejemplo de ejecución: agregar "Comprar pan" y ver la lista):
+## ----------------------------------------------------------------------------
+--- Gestor de Tareas ---
+1. Agregar nueva tarea
+2. Ver todas las tareas
+3. Marcar tarea como completada
+4. Eliminar tarea
+5. Salir
+------------------------
+Selecciona una opción (1-5): 1
+Introduce la descripción de la nueva tarea: Comprar pan
+Tarea 'Comprar pan' agregada con éxito.
+(vuelve a mostrarse el menú)
+Selecciona una opción (1-5): 2
+
+--- Lista de Tareas Pendientes ---
+1. Comprar pan - [Pendiente]
+---------------------------------
+
+Estructura de cada tarea (un diccionario dentro de la lista):
+    {"descripcion": "Comprar pan", "completada": False}
 -------------------------------------------------------------------------------
 """
 
@@ -51,7 +83,9 @@ def ver_tareas(tareas):
         return
 
     for indice, tarea in enumerate(tareas):
+        # if en línea: elige "Completada" o "Pendiente" según el valor booleano
         estado = "Completada" if tarea["completada"] else "Pendiente"
+        # indice + 1: la persona cuenta desde 1, la lista desde 0
         print(f"{indice + 1}. {tarea['descripcion']} - [{estado}]")
     print("---------------------------------")
 
@@ -61,6 +95,8 @@ def marcar_tarea_completa(tareas):
     if not tareas:
         return
 
+    # try/except: si el usuario escribe algo que no es número, int() falla con ValueError;
+    # lo capturamos para avisar en vez de que el programa se caiga.
     try:
         num_tarea_str = input("Ingresa el número de la tarea a marcar como completada: ")
         num_tarea = int(num_tarea_str)
@@ -117,7 +153,9 @@ def main():
         else:
             print("Opción no válida. Por favor, intenta de nuevo.")
 
-# Ejecutar la aplicación
+# Ejecutar la aplicación.
+# Esta condición hace que main() corra al ejecutar este archivo directamente,
+# pero no al importarlo desde otro archivo.
 if __name__ == "__main__":
     main()
 
@@ -145,3 +183,62 @@ if __name__ == "__main__":
     c. ¿Se podrían añadir prioridades a las tareas?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # Validar el número con .isdigit() en vez de try/except.
+    #   texto.isdigit()  -> True si el texto son solo dígitos ("3"), False si no ("a", "", "-1").
+    # Conviene: cuando quieres revisar el dato ANTES de convertirlo y el mensaje
+    # de error es el mismo para todo lo que no sea un número positivo. try/except
+    # es mejor si el dato puede venir de muchas formas (negativos, decimales).
+    tareas = [
+        {"descripcion": "Comprar pan", "completada": False},
+        {"descripcion": "Estudiar Python", "completada": True},
+    ]
+    ver_tareas(tareas)
+    texto = input("Ingresa el número de la tarea a eliminar: ")
+    if texto.isdigit() and 1 <= int(texto) <= len(tareas):
+        tarea_eliminada = tareas.pop(int(texto) - 1)
+        print(f"Tarea '{tarea_eliminada['descripcion']}' eliminada con éxito.")
+    else:
+        print("Número de tarea inválido o no es un número.")
+
+
+def alternativa_2():
+    # Mostrar las tareas con range(len(...)) y un if/else normal, en lugar de
+    # enumerate() y el if en línea. La salida es exactamente la misma.
+    # Conviene: para entender qué hace enumerate() por dentro; en la práctica,
+    # enumerate() es más corto y evita errores con los índices.
+    def ver_tareas_alternativa(tareas):
+        print("\n--- Lista de Tareas Pendientes ---")
+        if not tareas:
+            print("¡No hay tareas en la lista! Puedes agregar algunas.")
+            return
+        for i in range(len(tareas)):
+            if tareas[i]["completada"]:
+                estado = "Completada"
+            else:
+                estado = "Pendiente"
+            print(f"{i + 1}. {tareas[i]['descripcion']} - [{estado}]")
+        print("---------------------------------")
+
+    ejemplo = [
+        {"descripcion": "Comprar pan", "completada": False},
+        {"descripcion": "Estudiar Python", "completada": True},
+    ]
+    ver_tareas_alternativa(ejemplo)
+    ver_tareas(ejemplo)         # la versión de la solución: imprime lo mismo
+
+
+# alternativa_1()
+# alternativa_2()
