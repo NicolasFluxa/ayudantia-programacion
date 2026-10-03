@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                              EJERCICIO 01
-                  Funciones Simples y con Parámetros
+                                  EJERCICIO 01
+                       Funciones Simples y con Parámetros
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -26,16 +26,45 @@ ellas con parámetros.
     c. Imprime el resultado de la suma desde dentro de la función.
     d. Incluye un docstring explicando brevemente qué hace la función.
     e. Llama a esta función con tres números de ejemplo (ej: 5, 10, 2).
+
+## OBJETIVO:
+## ---------
+Aprender a definir (`def`) y llamar funciones, pasarles parámetros y
+documentarlas con un docstring. En este ejercicio las funciones IMPRIMEN
+el resultado; en el siguiente (funciones_con_retorno.py) lo DEVUELVEN con `return`.
+
+## ENTRADA:
+## --------
+Un nombre (texto). Ejemplo: Pedro
+
+## SALIDA ESPERADA (ejemplo de ejecución, con "Pedro"):
+## ----------------------------------------------------
+--- Llamando a mostrar_saludo_simple ---
+¡Hola, mundo desde una función!
+------------------------------------
+
+--- Llamando a saludar_usuario ---
+Por favor, ingresa tu nombre: Pedro
+¡Hola, Pedro! Bienvenido/a.
+¡Hola, Ana! Bienvenido/a.
+------------------------------------
+
+--- Llamando a sumar_tres_numeros ---
+La suma de 5 + 10 + 2 es: 17
+La suma de 100 + -50 + 25.5 es: 75.5
+------------------------------------
 -------------------------------------------------------------------------------
 """
 
 # 1. Función de saludo simple
+# `def` define la función, pero NO la ejecuta: el código de adentro (con sangría)
+# solo corre cuando la llamamos escribiendo su nombre con paréntesis.
 def mostrar_saludo_simple():
     """Imprime un saludo genérico."""
     print("¡Hola, mundo desde una función!")
 
 print("--- Llamando a mostrar_saludo_simple ---")
-mostrar_saludo_simple() # Llamada a la función
+mostrar_saludo_simple()  # Llamada a la función: aquí recién se ejecuta
 print("------------------------------------")
 
 # 2. Función de saludo con parámetro
@@ -79,3 +108,81 @@ print("------------------------------------")
     dentro de ella? ¿Por qué?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # Funciones que DEVUELVEN el resultado con `return` en vez de imprimirlo.
+    # Quien llama a la función decide qué hacer con el valor: imprimirlo, guardarlo
+    # o usarlo en otro cálculo.
+    # Conviene: casi siempre, porque la función queda reutilizable. Una función que
+    # solo imprime no sirve si luego quieres usar el resultado (ver funciones_con_retorno.py).
+    def saludo_simple():
+        return "¡Hola, mundo desde una función!"
+
+    def saludo_usuario(nombre_usuario):
+        return f"¡Hola, {nombre_usuario}! Bienvenido/a."
+
+    def sumar_tres_numeros(num1, num2, num3):
+        """Calcula y devuelve la suma de tres números."""
+        return num1 + num2 + num3
+
+    print("--- Llamando a mostrar_saludo_simple ---")
+    print(saludo_simple())
+    print("------------------------------------")
+
+    print("\n--- Llamando a saludar_usuario ---")
+    nombre_ingresado = input("Por favor, ingresa tu nombre: ")
+    print(saludo_usuario(nombre_ingresado))
+    print(saludo_usuario("Ana"))
+    print("------------------------------------")
+
+    print("\n--- Llamando a sumar_tres_numeros ---")
+    print(f"La suma de 5 + 10 + 2 es: {sumar_tres_numeros(5, 10, 2)}")
+    print(f"La suma de 100 + -50 + 25.5 es: {sumar_tres_numeros(100, -50, 25.5)}")
+    print("------------------------------------")
+
+
+def alternativa_2():
+    # Mismas funciones, pero con concatenación (+) para el saludo y sum() para sumar.
+    #   "¡Hola, " + nombre + "!"  -> pega textos (el nombre debe ser texto).
+    #   sum([a, b, c])            -> suma los elementos de una lista.
+    # Conviene: concatenar si lo que unes ya es texto; sum() cuando la cantidad de
+    # números puede cambiar (ver *args en la Semana 9). En general, f-string.
+    def mostrar_saludo_simple():
+        print("¡Hola, mundo desde una función!")
+
+    def saludar_usuario(nombre_usuario):
+        print("¡Hola, " + nombre_usuario + "! Bienvenido/a.")
+
+    def sumar_tres_numeros(num1, num2, num3):
+        suma = sum([num1, num2, num3])
+        print(f"La suma de {num1} + {num2} + {num3} es: {suma}")
+
+    print("--- Llamando a mostrar_saludo_simple ---")
+    mostrar_saludo_simple()
+    print("------------------------------------")
+
+    print("\n--- Llamando a saludar_usuario ---")
+    nombre_ingresado = input("Por favor, ingresa tu nombre: ")
+    saludar_usuario(nombre_ingresado)
+    saludar_usuario("Ana")
+    print("------------------------------------")
+
+    print("\n--- Llamando a sumar_tres_numeros ---")
+    sumar_tres_numeros(5, 10, 2)
+    sumar_tres_numeros(100, -50, 25.5)
+    print("------------------------------------")
+
+
+# alternativa_1()
+# alternativa_2()
