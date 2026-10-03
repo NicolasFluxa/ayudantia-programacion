@@ -1,7 +1,7 @@
 """
 -------------------------------------------------------------------------------
-                              EJERCICIO 02
-                   Argumentos por Palabra Clave (Keyword Arguments)
+                                  EJERCICIO 02
+                Argumentos por Palabra Clave (Keyword Arguments)
 -------------------------------------------------------------------------------
 ## ENUNCIADO:
 ## ----------
@@ -25,6 +25,26 @@ parámetros sean más claras y flexibles.
     d. Intenta llamar a la función proporcionando un argumento por palabra clave
        antes de un argumento posicional (ej: `crear_perfil_usuario(nombre="Ana", "ana@mail.com", edad=30)`).
        Observa y explica el error.
+
+## OBJETIVO:
+## ---------
+Llamar funciones por posición o por nombre (`parametro=valor`), mezclar
+ambas formas respetando la regla de orden, y entender el error que se
+produce al romperla.
+
+## ENTRADA:
+## --------
+Ninguna: todos los valores están escritos en el código.
+
+## SALIDA ESPERADA (extracto de la ejecución):
+## -------------------------------------------
+--- Perfil de Usuario ---
+Nombre: Juan Pérez
+Email : juan.perez@example.com
+Edad  : 28 años
+País  : Chile        <- valor por defecto, porque no se indicó
+-------------------------
+(... y lo mismo para las otras tres llamadas, y al final el mensaje del error de la llamada 4)
 -------------------------------------------------------------------------------
 """
 
@@ -60,17 +80,18 @@ crear_perfil_usuario("Carlos Ruiz", "c.ruiz@example.net", edad=45, pais="Argenti
 
 # 2d. Intento de llamar con palabra clave antes de posicional (esto dará error)
 print("\nLlamada 4 (intento de palabra clave antes de posicional):")
+# Escribir esta llamada directamente en el archivo haría que Python se negara a
+# ejecutar TODO el programa (error de sintaxis antes de empezar):
+#     crear_perfil_usuario(nombre="Ana", "ana@mail.com", edad=30)
+# Para mostrar el error sin romper el archivo, le pasamos esa línea como texto a
+# compile(), que la revisa sin ejecutarla, y capturamos el SyntaxError.
+llamada_incorrecta = 'crear_perfil_usuario(nombre="Ana", "ana@mail.com", edad=30)'
 try:
-    # La siguiente línea está comentada porque produce un error de sintaxis.
-    # Descoméntala para ver el error directamente en la ejecución.
-    # crear_perfil_usuario(nombre="Ana", "ana@mail.com", edad=30)
-    print("Error: Los argumentos posicionales deben preceder a los argumentos por palabra clave.")
-    print("Ejemplo de llamada INCORRECTA (no se ejecutará):")
-    print("# crear_perfil_usuario(nombre=\"Ana\", \"ana@mail.com\", edad=30)")
+    compile(llamada_incorrecta, "<llamada 4>", "exec")
 except SyntaxError as e:
-    # En la práctica, Python detecta esto como un SyntaxError antes de la ejecución.
-    # El bloque try-except aquí es más para ilustrar el punto en el texto.
-    print(f"Se produciría un SyntaxError: {e}")
+    print(f"Python rechaza la llamada: {llamada_incorrecta}")
+    print(f"SyntaxError: {e.msg}")
+    print("Regla: los argumentos posicionales deben ir ANTES que los de palabra clave.")
 
 print("-----------------------------------------")
 
@@ -89,3 +110,47 @@ print("-----------------------------------------")
     (ej: `pais="Perú"`)?
 -------------------------------------------------------------------------------
 """
+
+
+"""
+-------------------------------------------------------------------------------
+## OTRAS FORMAS DE HACERLO (alternativas que producen el mismo resultado)
+## ----------------------------------------------------------------------
+Las funciones de abajo NO se ejecutan solas. Para probar una, quita el # de la
+línea que la llama (al final del archivo) y ejecuta el programa.
+-------------------------------------------------------------------------------
+"""
+
+
+def alternativa_1():
+    # Guardar los datos en un diccionario y pasarlos con `**` al llamar.
+    #   **datos  -> Python reparte cada clave del diccionario como un argumento
+    #               por palabra clave (nombre=..., email=..., ...).
+    # Conviene: cuando los datos ya vienen agrupados (por ejemplo, leídos de un
+    # formulario o un archivo) y no quieres escribirlos uno por uno en cada llamada.
+    datos = {
+        "email": "sofia.gomez@example.com",
+        "pais": "México",
+        "edad": 32,
+        "nombre": "Sofía Gómez",
+    }
+    crear_perfil_usuario(**datos)   # equivale a la Llamada 2 de la solución
+
+
+def alternativa_2():
+    # Parámetros que SOLO se pueden pasar por palabra clave, usando un `*` suelto.
+    #   def f(*, a, b)  -> todo lo que va después del `*` se debe pasar con su nombre.
+    # Conviene: funciones con muchos datos del mismo tipo (como estos textos y
+    # números), donde pasarlos por posición se presta para confundir el orden.
+    def crear_perfil_estricto(*, nombre, email, edad, pais="Chile"):
+        print(f"{nombre} | {email} | {edad} años | {pais}")
+
+    crear_perfil_estricto(nombre="Juan Pérez", email="juan.perez@example.com", edad=28)
+    try:
+        crear_perfil_estricto("Juan Pérez", "juan.perez@example.com", 28)   # sin nombres: error
+    except TypeError as e:
+        print("TypeError:", e)
+
+
+# alternativa_1()
+# alternativa_2()
