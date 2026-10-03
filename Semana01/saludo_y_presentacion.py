@@ -57,7 +57,7 @@ print("¡Espero que disfrutes aprendiendo Python!")
 ## --------------------------
 1. ¿Qué hace la función `print()` en Python?
 2. Si quisieras que tu nombre apareciera entre comillas dobles en la salida
-   (por ejemplo, "Nicolás Fluxá"), ¿cómo modificarías la línea de código
+   (por ejemplo, "Ana Pérez"), ¿cómo modificarías la línea de código
    correspondiente? (Investiga sobre secuencias de escape o diferentes tipos de comillas).
 3. ¿Por qué crees que se utilizan comentarios (líneas que empiezan con #) en el código?
    ¿El intérprete de Python ejecuta los comentarios?
